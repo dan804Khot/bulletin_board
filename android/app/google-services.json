@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "35090471660",
+    "project_id": "abuto-8cee1",
+    "storage_bucket": "abuto-8cee1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35090471660:android:e9a8c0b2c523de3d8023c9",
+        "android_client_info": {
+          "package_name": "com.example.bulletin_board"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxci7gz0ZQiD0nUGWU1Zs3_gEEdxiZ9j4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
