@@ -30,17 +30,24 @@ environment:
 dependencies:
   cloud_firestore:
   firebase_core:
-  http:
-  flutter_dotenv: 
+  sqflite:
+  path_provider:
+  flutter_bloc: ^9.1.0
   flutter:
     sdk: flutter
-
+  auto_route: ^2.3.2
+  salomon_bottom_bar: ^3.1.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   image_picker: ^0.8.5+3
 
+dependency_overrides:
+  meta: ^1.7.0
+
 dev_dependencies:
+  auto_route_generator: ^2.3.2
+  build_runner: ^2.1.2
   flutter_test:
     sdk: flutter
 
@@ -50,6 +57,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

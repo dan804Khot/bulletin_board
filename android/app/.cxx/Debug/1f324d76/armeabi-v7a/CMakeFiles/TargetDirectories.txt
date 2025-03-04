@@ -1,0 +1,2 @@
+C:/Users/afana/Desktop/bulletin_board/android/app/.cxx/Debug/1f324d76/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/afana/Desktop/bulletin_board/android/app/.cxx/Debug/1f324d76/armeabi-v7a/CMakeFiles/rebuild_cache.dir
