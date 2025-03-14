@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:bulletin_board/outer_layer/category_label.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bulletin_board/advertisement_create/bloc/advertisement_create_bloc.dart';
+import 'package:bulletin_board/advertisement_create/models/category_model.dart';
 
 class CategoryDropdown extends StatelessWidget {
-  final CategoryLabel? selectedCategory;
-  final ValueChanged<CategoryLabel?> onChanged;
+  final CategoryModel? selectedCategory;
+  final ValueChanged<CategoryModel?> onChanged;
 
-  const CategoryDropdown({required this.selectedCategory, required this.onChanged, super.key});
+  const CategoryDropdown({super.key, required this.selectedCategory, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text("Категория товара"),
-        DropdownButton<CategoryLabel>(
-          value: selectedCategory,
-          items: CategoryLabel.values.map((category) {
-            return DropdownMenuItem<CategoryLabel>(
-              value: category,
-              child: Text(category.label),
-            );
-          }).toList(),
-          onChanged: onChanged,
-        ),
-      ],
+    return BlocBuilder<AdvertisementCreateBloc, AdvertisementCreateState>(
+      builder: (context, state) {
+        if (state is AdvertisementCreateInitial) {
+          return DropdownButton<CategoryModel>(
+            value: selectedCategory,
+            items: state.categories.map((category) {
+              return DropdownMenuItem<CategoryModel>(
+                value: category,
+                child: Text(category.label),
+              );
+            }).toList(),
+            onChanged: onChanged,
+          );
+        }
+        return const SizedBox.shrink();
+      },
     );
   }
 }

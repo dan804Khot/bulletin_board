@@ -13,9 +13,9 @@ class FavoriteScreen extends StatelessWidget {
         child: Text(
   'Здесь будут ваши избранные объявления.',
   style: TextStyle(
-    fontSize: 20.0, // Размер шрифта, похожий на headline6
-    color: Colors.black, // Цвет текста
-    fontWeight: FontWeight.bold, // Жирность текста
+    fontSize: 20.0, 
+    color: Colors.black, 
+    fontWeight: FontWeight.bold, 
   ),
 ),
       ),

@@ -3,12 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class FirebaseInitialization {
-  void initFirebase() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-}
+  static Future<void> initFirebase() async {  
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+  }
 
-  void createTable(adId,adData) async{
+  Future<void> createTable(String adId, Map<String, dynamic> adData) async {
     await FirebaseFirestore.instance.collection('advertisements').doc(adId).set(adData);
   }
 }

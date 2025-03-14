@@ -13,8 +13,8 @@ class BottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: selectedIndex, // Устанавливаем текущий индекс
-      onTap: onTap, // Обработчик нажатия на элементы
+      currentIndex: selectedIndex, 
+      onTap: onTap, 
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
