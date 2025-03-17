@@ -7,10 +7,14 @@ class AdvertisementCreateLoading extends AdvertisementCreateState {}
 class AdvertisementCreateInitial extends AdvertisementCreateState {
   final List<CategoryModel> categories;
   final CategoryModel? selectedCategory;
+  final File? image; 
 
-  AdvertisementCreateInitial(this.categories, {this.selectedCategory}); 
+  AdvertisementCreateInitial(
+    this.categories, {
+    this.selectedCategory,
+    this.image, 
+  });
 }
-
 
 class AdvertisementCreateUpdated extends AdvertisementCreateState {}
 

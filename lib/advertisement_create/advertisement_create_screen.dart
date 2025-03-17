@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:bulletin_board/advertisement_create/bloc/advertisement_create_bloc.dart';
+import 'package:bulletin_board/advertisement_list/advertisement_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -30,13 +31,15 @@ class AdvertisementCreateScreenState extends State<AdvertisementCreateScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              context.read<AdvertisementCreateBloc>().add(AdvertisementCreateSubmit(
-                title: _titleController.text,
-                description: _descriptionController.text,
-                name: _nameController.text,
-                phone: _numberController.text,
-                price: _isFree ? 'Бесплатно' : _priceController.text,
-              ));
+              BlocProvider.of<AdvertisementCreateBloc>(context, listen: false).add(
+                AdvertisementCreateSubmit(
+                  title: _titleController.text,
+                  description: _descriptionController.text,
+                  name: _nameController.text,
+                  phone: _numberController.text,
+                  price: _isFree ? 'Бесплатно' : _priceController.text,
+                ),
+              );
             },
             icon: const Icon(Icons.check),
           ),
@@ -48,10 +51,9 @@ class AdvertisementCreateScreenState extends State<AdvertisementCreateScreen> {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Объявление создано!')),
             );
-            Navigator.pop(context);
-          } else if (state is AdvertisementCreateError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message)),
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const AdvertisementList()),
             );
           }
         },
@@ -85,18 +87,20 @@ class AdvertisementCreateScreenState extends State<AdvertisementCreateScreen> {
                   final picker = ImagePicker();
                   final pickedFile = await picker.pickImage(source: ImageSource.gallery);
                   if (pickedFile != null) {
-                    if (mounted) {
-                      context.read<AdvertisementCreateBloc>().add(AdvertisementCreateUploadImage(File(pickedFile.path)));
+                    if (context.mounted) {
+                      context.read<AdvertisementCreateBloc>().add(
+                        AdvertisementCreateUploadImage(File(pickedFile.path)),
+                      );
                     }
                   }
                 },
               ),
               BlocBuilder<AdvertisementCreateBloc, AdvertisementCreateState>(
                 builder: (context, state) {
-                  if (state is AdvertisementCreateImagePicked) {
-                    return ImagePreview(selectedImage: state.image);
+                  if (state is AdvertisementCreateInitial && state.image != null) {
+                    return Image.file(state.image!); 
                   }
-                  return const SizedBox();
+                  return const SizedBox(); 
                 },
               ),
               const SizedBox(height: 16),

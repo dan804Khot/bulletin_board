@@ -18,7 +18,7 @@ Future<void> main() async {
           create: (context) => AdvertisementCreateBloc(
             adCreator: adCreator, 
             categoryService: categoryService, 
-          ),
+          )..add(AdvertisementCreateGetCategory()),
         ),
       ],
       child: MyApp(),
